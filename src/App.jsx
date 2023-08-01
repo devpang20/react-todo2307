@@ -22,9 +22,19 @@ function App() {
     },
   ]);
 
+  const onInsert = () => {
+    setTodos(
+      todos.concat({
+        id: 4,
+        text: "입력테스트",
+        checked: false,
+      })
+    );
+  };
+
   return (
     <div>
-      <TodoInsert />
+      <TodoInsert onInsert={onInsert} />
       <TodoList todos={todos} />
     </div>
   );
