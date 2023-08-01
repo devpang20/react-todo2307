@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
@@ -22,14 +22,19 @@ function App() {
     },
   ]);
 
+  const nextId = useRef(4);
+
   const onInsert = (text) => {
     setTodos(
-      todos.concat({
-        id: 4,
-        text: text,
-        checked: false,
-      })
+      todos.concat([
+        {
+          id: nextId.current,
+          text: text,
+          checked: false,
+        },
+      ])
     );
+    nextId.current++;
   };
 
   return (
